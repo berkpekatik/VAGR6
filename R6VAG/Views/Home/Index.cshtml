@@ -1,0 +1,51 @@
+﻿@model R6VAG.Model.SearchModel
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+@using (Html.BeginForm("Index", (string)ViewBag.Controller, FormMethod.Post, new { }))
+{
+    <div class="input-group input-group-lg">
+        <div class="input-group-prepend">
+        </div>
+        @Html.TextBox("name", null, new { @class = "form-control" })
+
+        <button type="submit" class="btn btn-secondary btn-lg">Search</button>
+    </div>
+}
+@if (IsPost)
+{
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Kullanıcı Adı</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Level</th>
+                <th scope="col">KDA</th>
+                <th scope="col">#</th>
+            </tr>
+        </thead>
+        @if (Model.results != null)
+        {
+            foreach (var item in Model.results)
+            {
+                var kd = (double)item.kd / 100;
+                var link = "http://r6tab.com/images/pngranks/" + item.p_currentrank + ".png";
+                <tbody>
+                    <tr>
+                        <th>@item.p_name</th>
+                        <td><img height="24" width="24" src="@link" /></td>
+                        <td>@item.p_level</td>
+                        <td>@Math.Round(kd, 2)</td>
+                        <td><a href="@Url.Action("Index", "Player", new { id = item.p_id })"><input type="button" class="btn btn-sm" value="Görüntüle" /></a></td>
+                    </tr>
+                </tbody>
+            }
+        }
+        else
+        {
+            <p>Sonuç bulunamadı!</p>
+        }
+    </table>
+    <p>Bulunan Sonuç: @Model.totalresults</p>
+}

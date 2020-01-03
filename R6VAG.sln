@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R6VAG", "R6VAG\R6VAG.csproj", "{6BE26F62-3FB7-48F6-8755-8E68CFAF21CB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "R6Service", "R6Service\R6Service.csproj", "{7282D778-D76F-4540-B917-52C8B3BEADC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6BE26F62-3FB7-48F6-8755-8E68CFAF21CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BE26F62-3FB7-48F6-8755-8E68CFAF21CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BE26F62-3FB7-48F6-8755-8E68CFAF21CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BE26F62-3FB7-48F6-8755-8E68CFAF21CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7282D778-D76F-4540-B917-52C8B3BEADC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7282D778-D76F-4540-B917-52C8B3BEADC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7282D778-D76F-4540-B917-52C8B3BEADC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7282D778-D76F-4540-B917-52C8B3BEADC4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52FB006B-7F5E-4A7C-BD87-E06D23DBC863}
+	EndGlobalSection
+EndGlobal

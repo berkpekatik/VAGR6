@@ -1,0 +1,20 @@
+﻿@model R6VAG.Model.PlayerProfileModel
+@{
+    ViewBag.Title = "Index";
+    var link = "";
+    var message = "";
+    if (Model == null)
+    {
+        message = "Profil oluşturulamadı, bir hata meydana geldi.";
+    }
+    else
+    {
+        link = "https://ubisoft-avatars.akamaized.net/"+Model.p_id+"/default_146_146.png";
+    }
+}
+
+<h2>Test profile page</h2>
+<h2>@message</h2>
+
+<img src="@link" />
+
