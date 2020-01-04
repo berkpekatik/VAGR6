@@ -1,51 +1,74 @@
 ﻿@model R6VAG.Model.SearchModel
 @{
     ViewBag.Title = "Index";
+    var result = 0;
 }
 <br />
+
 @using (Html.BeginForm("Index", (string)ViewBag.Controller, FormMethod.Post, new { }))
 {
-    <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
+    <header class="masthead text-white text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    <img id="logo_big" class="center-horizont" width="150px" src="~/Content/logo.png">
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    <form>
+                        <div class="form-row">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                @Html.TextBox("name", null, new { @class = "form-control form-control-lg", placeholder = "Kullanıcı adı.." })
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <button type="submit" class="btn btn-block btn-lg btn-dark">Ara</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        @Html.TextBox("name", null, new { @class = "form-control" })
-
-        <button type="submit" class="btn btn-secondary btn-lg">Search</button>
-    </div>
-}
-@if (IsPost)
-{
-    <table class="table table-hover table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Kullanıcı Adı</th>
-                <th scope="col">Rank</th>
-                <th scope="col">Level</th>
-                <th scope="col">KDA</th>
-                <th scope="col">#</th>
-            </tr>
-        </thead>
-        @if (Model.results != null)
+        @if (IsPost)
         {
-            foreach (var item in Model.results)
-            {
-                var kd = (double)item.kd / 100;
-                var link = "http://r6tab.com/images/pngranks/" + item.p_currentrank + ".png";
-                <tbody>
+            <hr />
+            <table class="table table-striped table-dark" id="playerList">
+                <thead>
                     <tr>
-                        <th>@item.p_name</th>
-                        <td><img height="24" width="24" src="@link" /></td>
-                        <td>@item.p_level</td>
-                        <td>@Math.Round(kd, 2)</td>
-                        <td><a href="@Url.Action("Index", "Player", new { id = item.p_id })"><input type="button" class="btn btn-sm" value="Görüntüle" /></a></td>
+                        <th scope="col" class="small"></th>
+                        <th scope="col">Kullanıcı Adı</th>
+                        <th scope="col">Rank</th>
+                        <th scope="col">MMR</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">KDA</th>
                     </tr>
-                </tbody>
-            }
+                </thead>
+                @if (Model != null && Model.results != null)
+                {
+                    result = Model.totalresults;
+                    foreach (var item in Model.results.Take(5))
+                    {
+                        var kd = (double)item.kd / 100;
+                        var link = "http://r6tab.com/images/pngranks/" + item.p_currentrank + ".png";
+                        <tbody>
+                            <tr>
+                                <th><img src="https://ubisoft-avatars.akamaized.net/@item.p_id/default_146_146.png" width="48px"></th>
+                                <th><a href="@Url.Action("Index", "Player", new { id = item.p_id })">@item.p_name</a></th>
+                                <td><img height="24" width="24" src="@link" alt="@item.p_currentmmr MMR"/></td>
+                                <td>@item.p_currentmmr</td>
+                                <td>@item.p_level</td>
+                                <td>@Math.Round(kd, 2)</td>
+                            </tr>
+                        </tbody>
+
+                    }
+                }
+                else
+                {
+                    <p>Sonuç bulunamadı!</p>
+                }
+            </table>
+            <p>Bulunan Sonuç: @result (Sonuçlar limitlendirilmiştir, Eğer kendi profilinizi bulamıyorsanız lütfen daha fazla filtre ekleyin.)</p>
         }
-        else
-        {
-            <p>Sonuç bulunamadı!</p>
-        }
-    </table>
-    <p>Bulunan Sonuç: @Model.totalresults</p>
+
+    </header>
 }
+
